@@ -1,23 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 using ELM.Exceptions;
 
 namespace ELM
 {
+	[DataContract]
 	public class SMSMessage : IMessageService
 	{
+		[DataMember(Name = "header", IsRequired = true, Order = 2)]
 		private string _header;
 		private string _body;
+		private Dictionary<string, string> _textSpeak;
 		private HashSet<Tuple<string, string>> output = new HashSet<Tuple<string,string>>();
+		[DataMember(Name = "sender", IsRequired = true, Order = 3)]
 		public string sender;
+		[DataMember(Name = "message", IsRequired = true, Order = 4)]
 		public string message;
+		[DataMember(Name = "type", IsRequired = true, Order = 1)]
+		public string type = "SMS";
 
-		public SMSMessage(String Header, String Body)
+		public SMSMessage(String Header, String Body, Dictionary<string, string> textSpeak)
 		{
 			this._header = Header;
 			this._body = Body;
+			this._textSpeak = textSpeak;
+		}
+
+		string IMessageService.Header
+		{
+			get { return this._header; }
 		}
 
 		public void Validate()
@@ -66,7 +80,16 @@ namespace ELM
 			return output;
 		}
 
-		public void SanitiseBody() {/*TO DO: TextSpeak*/}
+		public void SanitiseBody()
+		{
+			foreach(string word in (Regex.Replace(message, @"[^\w\s@#]", "").Split(' ')))
+			{
+				if (_textSpeak.TryGetValue(word, out string value))
+				{
+					message = message.Insert((message.IndexOf(word) + word.Length), " <" + value + ">");
+				}
+			}
+		}
 
 		public override string ToString()
 		{

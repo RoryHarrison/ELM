@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ELM"
         mc:Ignorable="d"
-        Title="Euston Leisure Messaging" Height="498" Width="1000">
+        Title="Euston Leisure Messaging" Height="547" Width="1000">
 	<Grid>
 		<TabControl x:Name="tabControl">
 			<TabItem Header="New Message">

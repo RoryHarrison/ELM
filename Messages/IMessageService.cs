@@ -6,6 +6,8 @@ namespace ELM
 {
 	public interface IMessageService
 	{
+		string Header { get; }
+
 		//Method for handling all the necessary functions
 		void Process()
 		{

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,9 +23,28 @@ namespace ELM
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		Dictionary<string, string> textSpeak = null;
+		Dictionary<string, string> hashtagList = null;
+		Dictionary<string, string> mentionList = null;
+
 		public MainWindow()
 		{
 			InitializeComponent();
+			textSpeak = readCSV(@"C:\Users\roryh\source\repos\ELM\Data\textwords.csv");
+			hashtagList = readCSV(@"C:\Users\roryh\source\repos\ELM\Data\hashtags.csv");
+			mentionList = readCSV(@"C:\Users\roryh\source\repos\ELM\Data\mentions.csv");
+		}
+
+		public Dictionary<string,string> readCSV(string path)
+		{
+			try
+			{
+				return File.ReadLines(path).Select(line => line.Split(',')).ToDictionary(line => line[0], line => line[1]);
+			}catch(Exception ex)
+			{
+				MessageBox.Show("Unable to read file at: '"+ path+"' Error: "+ex.Message);
+				return null;
+			}
 		}
 
 		private void ProcessMessageButton_Click(object sender, RoutedEventArgs e)
@@ -54,13 +75,27 @@ namespace ELM
 			switch (MessageHeader.Text[0])
 			{
 				case ('S'):
-					message = new SMSFactory(MessageHeader.Text, MessageBody.Text).GetMessage();
+					if(ContainsSubject())
+					{
+						MessageBox.Show("Subject is not allowed for this message type");
+						return;
+					}
+					message = new SMSFactory(MessageHeader.Text, MessageBody.Text, this.textSpeak).GetMessage();
 					break;
 				case ('E'):
+					if (!ContainsSubject())
+					{
+						MessageBox.Show("Subject is required for this message type");
+					}
 					message = new EmailFactory(MessageHeader.Text, MessageBody.Text).GetMessage();
 					break;
 				case ('T'):
-					message = new TweetFactory(MessageHeader.Text, MessageBody.Text).GetMessage();
+					if (ContainsSubject())
+					{
+						MessageBox.Show("Subject is not allowed for this message type");
+						return;
+					}
+					message = new TweetFactory(MessageHeader.Text, MessageBody.Text, this.textSpeak, this.hashtagList, this.mentionList).GetMessage();
 					break;
 				default:
 					MessageBox.Show("Invalid Message Type in Header");
@@ -81,6 +116,41 @@ namespace ELM
 			}
 
 			PopulateOutput(message);
+			try
+			{
+				WriteToFile(message);
+			}catch(Exception ex)
+			{
+				MessageBox.Show("There was an error writing this message to a file: "+ex.Message);
+			}
+
+			//Write to File
+		}
+
+		public bool ContainsSubject()
+		{
+			if (MessageBody.Text.ToLower().Contains("subject: "))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public void WriteToFile(IMessageService message)
+		{
+			Type type = message.GetType();
+			DataContractJsonSerializer js = new DataContractJsonSerializer(type);
+			using (var stream = File.Create(@"C:\Users\roryh\source\repos\ELM\json\"+message.Header+".json"))
+			{
+				using (var writer = JsonReaderWriterFactory.CreateJsonWriter(stream))
+				{
+					js.WriteObject(writer, message);
+					writer.Flush();
+				}
+			}
 		}
 
 		public void PopulateOutput(IMessageService message)

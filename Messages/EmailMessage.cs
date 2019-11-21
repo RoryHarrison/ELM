@@ -1,19 +1,27 @@
 ﻿using ELM.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Text.RegularExpressions;
 
 namespace ELM
 {
+	[DataContract]
 	public class EmailMessage : IMessageService
 	{
-		private string _header;
+		[DataMember(Name = "header", IsRequired = true, Order = 2)]
+		public string _header;
 		private string _body;
 		private HashSet<Tuple<string, string>> output = new HashSet<Tuple<string, string>>();
+		[DataMember(Name = "sender", IsRequired = true, Order = 3)]
 		public string sender;
+		[DataMember(Name = "subject", IsRequired = true, Order = 4)]
 		public string subject;
+		[DataMember(Name = "message", IsRequired = true, Order = 5)]
 		public string message;
+		[DataMember(Name = "type", IsRequired = true, Order = 1)]
+		public string type = "Email";
 
 		public EmailMessage(String header, String body)
 		{
@@ -21,10 +29,16 @@ namespace ELM
 			this._body = body;
 		}
 
+		string IMessageService.Header
+		{
+			get { return this._header; }
+		}
+
+
 		public void Validate()
 		{
 			Regex email = new Regex(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$");
-			Match match = email.Match(sender);
+			Match match = email.Match(sender); 
 			if (!match.Success)
 			{
 				throw new MessageValidationException("Invalid Email Address: " + sender);
