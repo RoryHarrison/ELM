@@ -8,12 +8,13 @@ using System.Text.RegularExpressions;
 namespace ELM
 {
 	[DataContract]
+	[KnownType(typeof(SIRMessage))]
 	public class EmailMessage : IMessageService
 	{
 		[DataMember(Name = "header", IsRequired = true, Order = 2)]
-		public string _header;
-		private string _body;
-		private HashSet<Tuple<string, string>> output = new HashSet<Tuple<string, string>>();
+		protected string _header;
+		protected string _body;
+		protected HashSet<Tuple<string, string>> output = new HashSet<Tuple<string, string>>();
 		[DataMember(Name = "sender", IsRequired = true, Order = 3)]
 		public string sender;
 		[DataMember(Name = "subject", IsRequired = true, Order = 4)]
@@ -23,7 +24,7 @@ namespace ELM
 		[DataMember(Name = "type", IsRequired = true, Order = 1)]
 		public string type = "Email";
 
-		public EmailMessage(String header, String body)
+		public EmailMessage(string header, string body)
 		{
 			this._header = header;
 			this._body = body;
@@ -33,7 +34,6 @@ namespace ELM
 		{
 			get { return this._header; }
 		}
-
 
 		public void Validate()
 		{
@@ -60,12 +60,7 @@ namespace ELM
 			}
 		}
 
-		public EmailMessage SIRCheck()
-		{
-			return this;
-		}
-
-		public void ParseBody()
+		public virtual void ParseBody()
 		{
 			string body = this._body;
 			try
@@ -112,7 +107,7 @@ namespace ELM
 
 		public override string ToString()
 		{
-			return "Email Message - header: " + this._header + " body: " + this._body;
+			return "Header: " + _header + "\nType: " + type + "\nSender: " + sender + "\nSubject: " + subject+ "\nMessage: "+message;
 		}
 	}
 }

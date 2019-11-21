@@ -4,6 +4,8 @@ C:\Users\roryh\source\repos\ELM\bin\Debug\netcoreapp3.0\ELM.runtimeconfig.json
 C:\Users\roryh\source\repos\ELM\bin\Debug\netcoreapp3.0\ELM.runtimeconfig.dev.json
 C:\Users\roryh\source\repos\ELM\bin\Debug\netcoreapp3.0\ELM.dll
 C:\Users\roryh\source\repos\ELM\bin\Debug\netcoreapp3.0\ELM.pdb
+C:\Users\roryh\source\repos\ELM\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\roryh\source\repos\ELM\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
 C:\Users\roryh\source\repos\ELM\obj\Debug\netcoreapp3.0\ELM.csprojAssemblyReference.cache
 C:\Users\roryh\source\repos\ELM\obj\Debug\netcoreapp3.0\MainWindow.g.cs
 C:\Users\roryh\source\repos\ELM\obj\Debug\netcoreapp3.0\App.g.cs
@@ -13,8 +15,6 @@ C:\Users\roryh\source\repos\ELM\obj\Debug\netcoreapp3.0\MainWindow.baml
 C:\Users\roryh\source\repos\ELM\obj\Debug\netcoreapp3.0\ELM.g.resources
 C:\Users\roryh\source\repos\ELM\obj\Debug\netcoreapp3.0\ELM.AssemblyInfoInputs.cache
 C:\Users\roryh\source\repos\ELM\obj\Debug\netcoreapp3.0\ELM.AssemblyInfo.cs
+C:\Users\roryh\source\repos\ELM\obj\Debug\netcoreapp3.0\ELM.csproj.CopyComplete
 C:\Users\roryh\source\repos\ELM\obj\Debug\netcoreapp3.0\ELM.dll
 C:\Users\roryh\source\repos\ELM\obj\Debug\netcoreapp3.0\ELM.pdb
-C:\Users\roryh\source\repos\ELM\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
-C:\Users\roryh\source\repos\ELM\bin\Debug\netcoreapp3.0\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
-C:\Users\roryh\source\repos\ELM\obj\Debug\netcoreapp3.0\ELM.csproj.CopyComplete

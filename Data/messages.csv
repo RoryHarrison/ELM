@@ -1,0 +1,5 @@
+T000000001;sender: @rpwh message: This is an abbreviation test LOL
+T000000002;sender: @rory message: This is a #hashtag and @mention test
+E000000001;sender: me@rpwh.dev subject: Test Again message: This is a URL test www.google.com
+E000000002;sender: me@rpwh.dev subject: SIR 19/11/19 Sport Centre Code: 66-676-99 Nature of Incident: Raid message: There's a Bomb!
+S000000001;sender: 07963876549 message: Testing abbreviations again KOTC

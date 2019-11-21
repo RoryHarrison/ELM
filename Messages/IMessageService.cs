@@ -13,9 +13,9 @@ namespace ELM
 		{
 			try
 			{
-				ParseBody();
-				Validate();
-				SanitiseBody();
+				this.ParseBody();
+				this.Validate();
+				this.SanitiseBody();
 			}
 			catch (Exception e)
 			{

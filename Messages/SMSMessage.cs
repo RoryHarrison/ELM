@@ -93,7 +93,7 @@ namespace ELM
 
 		public override string ToString()
 		{
-			return "SMS Message - header: " + this._header + " body: " + this._body;
+			return "Header: " + _header + "\nType: " + type + "\nSender: " + sender + "\nMessage: " + message;
 		}
 	}
 }
