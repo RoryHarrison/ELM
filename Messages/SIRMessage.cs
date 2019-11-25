@@ -91,7 +91,7 @@ namespace ELM
 			Match match = regex.Match(SCC);
 			if (!match.Success)
 			{
-				throw new MessageValidationException("Please Enter a Valid Sport Centre Code ()");
+				throw new MessageValidationException("Please Enter a Valid Sport Centre Code");
 			}
 		}
 

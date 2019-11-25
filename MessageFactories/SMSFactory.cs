@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ELM
 {
-	class SMSFactory : MessageFactory
+	public class SMSFactory : MessageFactory
 	{
 		private string _header;
 		private string _body;

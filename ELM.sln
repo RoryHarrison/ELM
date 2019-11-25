@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELM", "ELM.csproj", "{FB218BAD-118C-4400-8ADF-6E38BC68A6FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ELM", "ELM.csproj", "{FB218BAD-118C-4400-8ADF-6E38BC68A6FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELMTests", "..\ELMTests\ELMTests.csproj", "{37C4171C-47B0-4569-85C5-90FCBD662F43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FB218BAD-118C-4400-8ADF-6E38BC68A6FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB218BAD-118C-4400-8ADF-6E38BC68A6FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB218BAD-118C-4400-8ADF-6E38BC68A6FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37C4171C-47B0-4569-85C5-90FCBD662F43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37C4171C-47B0-4569-85C5-90FCBD662F43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37C4171C-47B0-4569-85C5-90FCBD662F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37C4171C-47B0-4569-85C5-90FCBD662F43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

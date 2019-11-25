@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ELM
 {
-	class TweetFactory : MessageFactory
+	public class TweetFactory : MessageFactory
 	{
 		private string _header;
 		private string _body;

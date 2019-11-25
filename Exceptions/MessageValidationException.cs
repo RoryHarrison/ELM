@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ELM.Exceptions
 {
-	class MessageValidationException : Exception
+	public class MessageValidationException : Exception
 	{
 
 		public string ErrorMessage;

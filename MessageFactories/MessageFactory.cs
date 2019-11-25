@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ELM
 {
-	abstract class MessageFactory
+	public abstract class MessageFactory
 	{
 		public abstract IMessageService GetMessage();
 	}
